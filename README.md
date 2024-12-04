@@ -42,27 +42,27 @@ This script is designed to manage network configurations on macOS. It allows you
 
 1. **Initialize a Default Configuration File**:
    ```bash
-   ./route.sh -i -o my_config.ini
+   ./mroute.sh -i -o my_config.ini
    ```
 
 2. **Set Configuration from a File**:
    ```bash
-   ./route.sh -s -f custom_config.ini -p "Wi-Fi"
+   ./mroute.sh -s -f custom_config.ini -p "Wi-Fi"
    ```
 
 3. **Reset Network Configuration**:
    ```bash
-   ./route.sh -r -p "Wi-Fi"
+   ./mroute.sh -r -p "Wi-Fi"
    ```
 
 4. **Backup Current Configuration**:
    ```bash
-   ./route.sh -b -p "Wi-Fi" -o backup_config.ini
+   ./mroute.sh -b -p "Wi-Fi" -o backup_config.ini
    ```
 
 5. **Restore Configuration from Backup**:
    ```bash
-   ./route.sh -be
+   ./mroute.sh -be
    ```
 
 ## File Structure
