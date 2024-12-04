@@ -42,7 +42,7 @@ This script is designed to manage network configurations on macOS. It allows you
 
 1. **Initialize a Default Configuration File**:
    ```bash
-   ./network_config.sh -i -o my_config.ini
+   ./route.sh -i -o my_config.ini
    ```
 
 2. **Set Configuration from a File**:
