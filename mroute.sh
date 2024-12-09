@@ -77,6 +77,23 @@ backup_config() {
     echo "Backup created at '$output_file'."
 }
 
+# Function to display help text
+display_help() {
+    echo "Usage: $0 [-r | -s | -b | -be] [-p <network_service>] [-f <config_file>] | -i [-o <output_file>]"
+    echo
+    echo "Options:"
+    echo "  -r                 Reset DNS, search domain, and routes."
+    echo "  -s                 Set DNS, search domain, and routes using configuration file."
+    echo "  -b                 Backup current configuration to 'config_backup.ini' or specified file."
+    echo "  -be                Restore configuration from 'config_backup.ini'."
+    echo "  -p <interface>     Specify the network interface (e.g., Wi-Fi)."
+    echo "  -f <config_file>   Specify a custom configuration file. Defaults to 'config.ini'."
+    echo "  -i                 Create a default 'config.ini' file with example values."
+    echo "  -o <output_file>   Specify the output file for backup or initialization."
+    echo
+    echo "If no arguments are provided and 'config.ini' is not found, use '-i' to create a configuration file."
+}
+
 # Function to parse the configuration file
 parse_config_file() {
     local CONFIG_FILE=$1
