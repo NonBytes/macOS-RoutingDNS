@@ -37,19 +37,25 @@ def expand_cidr_range(cidr_range):
     network = ipaddress.IPv4Network(cidr_range, strict=False)
     return [str(ip) for ip in network.hosts()]
 
+# Function to read IPs from a file
+def read_ips_from_file(file_path):
+    with open(file_path, "r") as file:
+        return [line.strip() for line in file if line.strip()]
+
 # Main function
 def main():
     parser = argparse.ArgumentParser(description="Reverse DNS Lookup Tool with Custom DNS Server")
     parser.add_argument("-s", "--subnet", help="Subnet (e.g., 10.10.10) for sequential IP range")
     parser.add_argument("-r", "--cidr", help="CIDR range (e.g., 10.10.10.0/24) for IP expansion")
+    parser.add_argument("-f", "--file", help="File containing IP addresses (one per line)")
     parser.add_argument("-d", "--dns", help="DNS server to use for lookups (e.g., 8.8.8.8)", required=True)
     parser.add_argument("-o", "--output", help="Output file to save results", default=None)
     parser.add_argument("-t", "--threads", help="Number of concurrent threads (default: 10)", type=int, default=10)
     args = parser.parse_args()
 
     # Validate input
-    if not args.subnet and not args.cidr:
-        print("Error: Either --subnet or --cidr must be provided.")
+    if not args.subnet and not args.cidr and not args.file:
+        print("Error: Either --subnet, --cidr, or --file must be provided.")
         parser.print_help()
         return
 
@@ -60,6 +66,9 @@ def main():
     elif args.cidr:
         print(f"Expanding CIDR range: {args.cidr}")
         ip_list = expand_cidr_range(args.cidr)
+    elif args.file:
+        print(f"Reading IPs from file: {args.file}")
+        ip_list = read_ips_from_file(args.file)
 
     # Perform Reverse DNS Lookups
     print("Starting Reverse DNS Lookups...")
